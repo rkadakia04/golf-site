@@ -107,7 +107,7 @@
     background-size:112%;               /* slight overfill so no flat-color rim at the edge */
     background-position:center;
     background-blend-mode:multiply;
-    box-shadow:0 10px 22px rgba(0,53,26,.18);   /* soft drop shadow */
+    box-shadow:0 12px 26px rgba(0,53,26,.26);   /* soft drop shadow — slightly stronger */
     /* NOTE: visible by default (no opacity:0 here) — the entrance comes from the
        keyframe's backwards fill, so if a browser ever drops the animation the
        balls still render instead of vanishing. */
@@ -148,14 +148,14 @@
   .cta-row{
     margin-top:40px;
     display:flex; gap:16px; flex-wrap:wrap;
-    align-items:center; justify-content:center;
+    align-items:flex-start; justify-content:center;   /* top-align so both bottoms line up with the shadow */
   }
 
   /* fat pill — "how it works" */
   .btn-how{
     display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    width:220px; height:64px; padding:0 18px;
-    border-radius:26px;
+    width:220px; height:56px; padding:6px 18px 0;   /* 56 + 8px shadow = 64; padding-top re-centers the text within the shadowed shape */
+    border-radius:24px;
     background:var(--dark-green);
     color:#fff;
     font-family:'AG Book Rounded', ui-rounded, 'SF Pro Rounded', sans-serif;
@@ -320,7 +320,7 @@
     .step .num{ margin-left:auto; margin-right:auto; }
     .step p{ margin-left:auto; margin-right:auto; }
     .step .art svg{ max-width:300px; }
-    .cta-row{ flex-direction:column; }
+    .cta-row{ flex-direction:column; align-items:center; }
   }
 
   /* ===== "golf, in your texts." scene — 2× conversation image + live headline overlay.
@@ -337,7 +337,7 @@
   .tscene__img{ display:block; width:100%; height:auto; -webkit-user-drag:none; user-drag:none; }
   .tscene__title{
     position:absolute; left:50%; top:13%; transform:translate(-50%,-50%);
-    margin:0; white-space:nowrap;
+    margin:0; white-space:nowrap; text-align:center;
     font-family:'AG Book Rounded', ui-rounded, 'SF Pro Rounded', sans-serif; font-weight:700;
     color:#33F292; font-size:5.9cqw; letter-spacing:-.03em; line-height:1;  /* 5.9% of width = Figma's 102px */
   }
@@ -352,10 +352,11 @@
     .js .tscene__title{ opacity:1; }
     .tscene__title.in{ animation:none; }
   }
-  /* portrait mobile/iPad: break onto two lines ("golf, in your" / "texts.") so it can be bigger */
+  /* portrait mobile/iPad: exactly two centered lines ("golf, in your" / "texts.") */
   @media (max-width:1024px){
-    .tscene__title{ top:15%; font-size:13cqw; white-space:normal; line-height:1.02; }
-    .tscene__title .tt2{ display:block; }
+    .tscene__title{ top:15%; font-size:11cqw; white-space:normal; line-height:1.04; }
+    .tscene__title .tt1{ display:block; white-space:nowrap; }   /* keep "golf, in your" on one line */
+    .tscene__title .tt2{ display:block; }                        /* "texts." on line two */
   }
 </style>
 </head>
