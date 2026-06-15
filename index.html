@@ -83,7 +83,7 @@
   }
 
   /* ---------- decorative colored golf balls (pop in + breathe, like the app) ---------- */
-  .hero-stage{ position:relative; width:100%; min-height:100svh; display:flex; }
+  .hero-stage{ position:relative; width:100%; min-height:100svh; min-height:100lvh; display:flex; }
   .hero-content{ position:relative; z-index:2; flex:1;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     text-align:center; padding:80px 28px 64px; }
@@ -306,6 +306,16 @@
     .bp:nth-child(4){ left:97% !important; top:62% !important; } /* teal   — nudged right / more cropped */
     .bp:nth-child(7){ left:18% !important; top:83% !important; } /* purple — a bit more to the bottom-left */
     .bp:nth-child(8){ left:86% !important; top:83% !important; } /* white  — down a bit */
+  }
+  /* phones: smaller + only the four corners, so the center isn't crowded */
+  @media (max-width:600px){
+    .bp{ width:108px !important; height:108px !important; }
+    .bp:nth-child(4){ display:none !important; }                 /* teal — drop on phone */
+    .bp:nth-child(5){ display:none !important; }                 /* pink — drop on phone */
+    .bp:nth-child(1){ left:9%  !important; top:9%  !important; } /* red    — top-left     */
+    .bp:nth-child(3){ left:91% !important; top:12% !important; } /* yellow — top-right    */
+    .bp:nth-child(7){ left:10% !important; top:90% !important; } /* purple — bottom-left  */
+    .bp:nth-child(8){ left:90% !important; top:87% !important; } /* white  — bottom-right */
   }
 
   @media (max-width:760px){
