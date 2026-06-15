@@ -158,7 +158,8 @@
     border-radius:26px;
     background:var(--dark-green);
     color:#fff;
-    font-size:21px; font-weight:600;
+    font-family:'AG Book Rounded', ui-rounded, 'SF Pro Rounded', sans-serif;
+    font-size:22px; font-weight:700;
     box-shadow:0 10px 24px rgba(0,53,26,.22);
     transition:transform .15s ease, box-shadow .15s ease;
   }
@@ -350,9 +351,10 @@
     .js .tscene__title{ opacity:1; }
     .tscene__title.in{ animation:none; }
   }
-  /* portrait mobile/iPad image needs the headline higher & larger relative to width */
+  /* portrait mobile/iPad: break onto two lines ("golf, in your" / "texts.") so it can be bigger */
   @media (max-width:1024px){
-    .tscene__title{ top:15%; font-size:9cqw; }
+    .tscene__title{ top:15%; font-size:13cqw; white-space:normal; line-height:1.02; }
+    .tscene__title .tt2{ display:block; }
   }
 </style>
 </head>
@@ -379,7 +381,7 @@
 
     <div class="cta-row">
       <a href="#how" class="btn-how">
-        How it Works
+        how it works
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
 
@@ -405,7 +407,7 @@
              loading="lazy" decoding="async"
              alt="An iMessage chat — Emily: r u up for some golf rn??? Ayush: lol ya, just be ready to lose. The golf game card: let's play golf! Emily: bring it on." />
       </picture>
-      <h2 class="tscene__title">golf, in your texts.</h2>
+      <h2 class="tscene__title"><span class="tt1">golf, in your</span> <span class="tt2">texts.</span></h2>
     </div>
   </section>
 
