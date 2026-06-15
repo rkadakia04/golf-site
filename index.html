@@ -160,10 +160,11 @@
     color:#fff;
     font-family:'AG Book Rounded', ui-rounded, 'SF Pro Rounded', sans-serif;
     font-size:22px; font-weight:700;
-    box-shadow:0 10px 24px rgba(0,53,26,.22);
-    transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:0 8px 0 #062b18;          /* hard, cartoony drop shadow in the App Store button's green */
+    transition:transform .12s ease, box-shadow .12s ease;
   }
-  .btn-how:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(0,53,26,.28); }
+  .btn-how:hover{ transform:translateY(-2px); box-shadow:0 10px 0 #062b18; }
+  .btn-how:active{ transform:translateY(4px); box-shadow:0 4px 0 #062b18; }
   .btn-how svg{ width:18px; height:18px; }
 
   /* App Store badge */
@@ -308,10 +309,10 @@
     /* pushed further toward the edges + a little imperfect (varied tops, off the grid) */
     .bp:nth-child(1){ left:23% !important; top:12% !important; } /* red    — moved right    */
     .bp:nth-child(3){ left:93% !important; top:30% !important; } /* yellow — down-right     */
-    .bp:nth-child(5){ left:0%  !important; top:46% !important; } /* pink   — nudged left  */
-    .bp:nth-child(4){ left:99% !important; top:62% !important; } /* teal   — nudged right */
-    .bp:nth-child(7){ left:18% !important; top:87% !important; } /* purple — down a bit   */
-    .bp:nth-child(8){ left:86% !important; top:83% !important; } /* white  — down a bit */
+    .bp:nth-child(5){ left:-5%  !important; top:46% !important; } /* pink   — further left  */
+    .bp:nth-child(4){ left:102% !important; top:62% !important; } /* teal   — further right */
+    .bp:nth-child(7){ left:20%  !important; top:87% !important; } /* purple — very slightly right */
+    .bp:nth-child(8){ left:89%  !important; top:83% !important; } /* white  — slightly right */
   }
 
   @media (max-width:760px){
