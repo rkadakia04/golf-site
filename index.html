@@ -87,6 +87,11 @@
   .hero-content{ position:relative; z-index:2; flex:1;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     text-align:center; padding:80px 28px 64px; }
+  /* below iPad: taller splash (more green) + content nudged down so it feels more centered */
+  @media (max-width:1024px){
+    .hero-stage{ min-height:112svh; }
+    .hero-content{ padding:22svh 28px 10svh; }
+  }
 
   .bp{ position:absolute; z-index:1;
     transform:translate(-50%,-50%);
