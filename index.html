@@ -296,7 +296,7 @@
      CLOSER to the centered content (not way out on the edges). They stay LARGE —
      the layout changes, they don't shrink. (!important overrides inline positions.) */
   @media (max-width:1024px){
-    .bp{ width:158px !important; height:158px !important; }       /* a touch bigger on tablet/phone */
+    .bp{ width:clamp(112px,30vw,155px) !important; height:clamp(112px,30vw,155px) !important; }  /* ~155 on iPad, scales down on phones */
     .bp:nth-child(2){ display:none !important; }                 /* orange — removed */
     .bp:nth-child(6){ display:none !important; }                 /* navy   — removed */
     /* pushed further toward the edges + a little imperfect (varied tops, off the grid) */
@@ -306,16 +306,6 @@
     .bp:nth-child(4){ left:97% !important; top:62% !important; } /* teal   — nudged right / more cropped */
     .bp:nth-child(7){ left:18% !important; top:83% !important; } /* purple — a bit more to the bottom-left */
     .bp:nth-child(8){ left:86% !important; top:83% !important; } /* white  — down a bit */
-  }
-  /* phones: smaller + only the four corners, so the center isn't crowded */
-  @media (max-width:600px){
-    .bp{ width:108px !important; height:108px !important; }
-    .bp:nth-child(4){ display:none !important; }                 /* teal — drop on phone */
-    .bp:nth-child(5){ display:none !important; }                 /* pink — drop on phone */
-    .bp:nth-child(1){ left:9%  !important; top:9%  !important; } /* red    — top-left     */
-    .bp:nth-child(3){ left:91% !important; top:12% !important; } /* yellow — top-right    */
-    .bp:nth-child(7){ left:10% !important; top:90% !important; } /* purple — bottom-left  */
-    .bp:nth-child(8){ left:90% !important; top:87% !important; } /* white  — bottom-right */
   }
 
   @media (max-width:760px){
