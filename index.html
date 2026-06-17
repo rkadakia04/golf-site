@@ -335,7 +335,7 @@
     position:relative; margin:0 auto;           /* full-width — no side bars */
     container-type:inline-size; font-size:0;    /* cqw = 1% of the image width; kills inline gap */
   }
-  .tscene__img{ display:block; width:100%; height:auto; -webkit-user-drag:none; user-drag:none; }
+  .tscene__img{ display:block; width:100%; height:auto; aspect-ratio:3456 / 2234; -webkit-user-drag:none; user-drag:none; }
   .tscene__title{
     position:absolute; left:50%; top:13%; transform:translate(-50%,-50%);
     margin:0; white-space:nowrap; text-align:center;
@@ -358,6 +358,7 @@
     .tscene__title{ top:15%; font-size:11cqw; white-space:normal; line-height:1.04; }
     .tscene__title .tt1{ display:block; white-space:nowrap; }   /* keep "golf, in your" on one line */
     .tscene__title .tt2{ display:block; }                        /* "texts." on line two */
+    .tscene__img{ aspect-ratio:1548 / 3351; }                    /* portrait image — reserve correct space, no scroll-shift */
   }
 
   /* ===== waitlist signup (footer) ===== */
