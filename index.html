@@ -100,13 +100,9 @@
     display:block;                      /* span is inline by default, which ignores width/height */
     position:relative;
     width:100%; height:100%; border-radius:50%;
-    /* the REAL app asset, tinted exactly like the app's colorMultiply:
-       golfball.png (white, dimpled) × the chosen color, via background-blend */
+    overflow:hidden; isolation:isolate;          /* clip + contain the rotated texture */
+    /* the chosen ball color; the white dimpled texture is a rotated ::before, multiplied over it */
     background-color:var(--c);
-    background-image:url('golfball.png');
-    background-size:112%;               /* slight overfill so no flat-color rim at the edge */
-    background-position:center;
-    background-blend-mode:multiply;
     box-shadow:0 15px 26px rgba(0,53,26,.32);   /* soft drop shadow — slightly stronger */
     /* NOTE: visible by default (no opacity:0 here) — the entrance comes from the
        keyframe's backwards fill, so if a browser ever drops the animation the
@@ -117,7 +113,14 @@
       pop .66s cubic-bezier(.34,1.56,.64,1) var(--delay) both,
       breathe 3.4s ease-in-out .9s infinite;
   }
-  .gball img{ display:none; }          /* tint is done via background-blend on .gball */
+  .gball img{ display:none; }
+  /* white dimpled texture, multiplied over the ball color, rotated per-ball via --rot */
+  .gball::before{
+    content:""; position:absolute; inset:-10%;
+    background:center/cover no-repeat url('golfball.png');
+    mix-blend-mode:multiply;
+    transform:rotate(var(--rot, 0deg));
+  }
   @keyframes pop{
     0%{ transform:scale(.2); opacity:0; }
     100%{ transform:scale(1); opacity:1; }
@@ -406,14 +409,14 @@
 
     <!-- decorative colored golf balls that pop in + breathe around the logo -->
     <div aria-hidden="true">
-      <span class="bp" style="left:28%;  top:27%; width:185px; height:185px;"><span class="gball" style="--c:#FF5A5F; --delay:.04s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:6%;   top:12%; width:185px; height:185px;"><span class="gball" style="--c:#FF8E3C; --delay:.30s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:71%;  top:24%; width:185px; height:185px;"><span class="gball" style="--c:#FEE10D; --delay:.16s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:91%;  top:45%; width:185px; height:185px;"><span class="gball" style="--c:#2EC8D8; --delay:.42s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:24%;  top:53%; width:185px; height:185px;"><span class="gball" style="--c:#FF74A0; --delay:.38s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:91%;  top:75%; width:185px; height:185px;"><span class="gball" style="--c:#5B8DEF; --delay:.12s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:15%;  top:83%; width:185px; height:185px;"><span class="gball" style="--c:#B06BFF; --delay:.26s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:66%;  top:78%; width:185px; height:185px;"><span class="gball" style="--c:#FFFFFF; --delay:.22s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:28%;  top:27%; width:185px; height:185px;"><span class="gball" style="--c:#FF5A5F; --delay:.04s; --rot:-8deg"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:6%;   top:12%; width:185px; height:185px;"><span class="gball" style="--c:#FF8E3C; --delay:.30s; --rot:9deg"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:71%;  top:24%; width:185px; height:185px;"><span class="gball" style="--c:#FEE10D; --delay:.16s; --rot:5deg"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:91%;  top:45%; width:185px; height:185px;"><span class="gball" style="--c:#2EC8D8; --delay:.42s; --rot:-10deg"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:24%;  top:53%; width:185px; height:185px;"><span class="gball" style="--c:#FF74A0; --delay:.38s; --rot:7deg"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:91%;  top:75%; width:185px; height:185px;"><span class="gball" style="--c:#5B8DEF; --delay:.12s; --rot:-6deg"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:15%;  top:83%; width:185px; height:185px;"><span class="gball" style="--c:#B06BFF; --delay:.26s; --rot:10deg"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:66%;  top:78%; width:185px; height:185px;"><span class="gball" style="--c:#FFFFFF; --delay:.22s; --rot:-4deg"><img src="golfball.png" alt=""></span></span>
     </div>
 
     <div class="hero-content">
@@ -514,7 +517,7 @@
     <div class="fmark wordmark">golf</div>
 
     <div class="wl" id="waitlist">
-      <p class="wl-title">live in 5 days. get notified.</p>
+      <p class="wl-title">live in 3 days. get notified.</p>
       <form class="waitlist" novalidate>
         <input class="wl-email" type="email" name="email" placeholder="your email" autocomplete="email" required>
         <button class="wl-btn" type="submit">join</button>
