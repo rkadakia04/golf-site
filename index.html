@@ -7,6 +7,11 @@
 <link rel="icon" type="image/png" href="favicon.png?v=2" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
 <link rel="apple-touch-icon" href="favicon.png?v=2" />
+<script>
+  /* keep the URL clean (no #how etc.) and always start at the top on load */
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+</script>
 <meta name="description" content="mini-golf, inside messages." />
 <meta name="theme-color" content="#33F292" />
 
@@ -572,12 +577,14 @@
       });
     })();
 
-    /* App Store button → robust scroll to the waitlist (re-targets as lazy images load) */
+    /* in-page anchor links (how it works, app store) → smooth scroll WITHOUT
+       putting #hash in the URL, so the URL is always imessagegolf.com */
     (function () {
       function go(e) {
-        if (e) e.preventDefault();
-        var t = document.getElementById('waitlist');
+        var id = e.currentTarget.getAttribute('href').slice(1);
+        var t = id && document.getElementById(id);
         if (!t) return;
+        e.preventDefault();   // no hash added → clean URL + refresh starts at top
         var scroll = function () { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
         // force any below-the-fold images to load, and re-scroll whenever one settles
         document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
@@ -587,7 +594,7 @@
         scroll();
         [200, 600, 1200, 2000].forEach(function (d) { setTimeout(scroll, d); });
       }
-      document.querySelectorAll('a[href="#waitlist"]').forEach(function (a) {
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
         a.addEventListener('click', go);
       });
     })();
