@@ -288,6 +288,9 @@
     color:#fff;
     text-shadow:0 4px 16px rgba(0,53,26,.12);   /* slightly stronger lift, a bit more distance */
   }
+  @media (max-width:1024px){
+    footer .fmark{ font-size:clamp(72px, 16vw, 168px); }   /* same size as the splash wordmark on smaller screens */
+  }
   footer .ftag{
     margin-top:8px;
     font-size:20px; font-weight:700;
@@ -509,6 +512,7 @@
   <!-- ===================== FOOTER ===================== -->
   <footer>
     <div class="fmark wordmark">golf</div>
+    <div class="ftag">mini-golf, inside messages.</div>
 
     <div class="wl" id="waitlist">
       <p class="wl-title">we're live in less than a week.<br>join the waitlist.</p>
