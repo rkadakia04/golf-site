@@ -560,6 +560,26 @@
           });
       });
     })();
+
+    /* App Store button → robust scroll to the waitlist (re-targets as lazy images load) */
+    (function () {
+      function go(e) {
+        if (e) e.preventDefault();
+        var t = document.getElementById('waitlist');
+        if (!t) return;
+        var scroll = function () { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+        // force any below-the-fold images to load, and re-scroll whenever one settles
+        document.querySelectorAll('img[loading="lazy"]').forEach(function (img) {
+          img.loading = 'eager';
+          if (!img.complete) img.addEventListener('load', scroll, { once: true });
+        });
+        scroll();
+        [200, 600, 1200, 2000].forEach(function (d) { setTimeout(scroll, d); });
+      }
+      document.querySelectorAll('a[href="#waitlist"]').forEach(function (a) {
+        a.addEventListener('click', go);
+      });
+    })();
   </script>
 </body>
 </html>
