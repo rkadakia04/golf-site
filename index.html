@@ -107,7 +107,7 @@
     background-size:112%;               /* slight overfill so no flat-color rim at the edge */
     background-position:center;
     background-blend-mode:multiply;
-    box-shadow:0 12px 26px rgba(0,53,26,.26);   /* soft drop shadow — slightly stronger */
+    box-shadow:0 15px 26px rgba(0,53,26,.32);   /* soft drop shadow — slightly stronger */
     /* NOTE: visible by default (no opacity:0 here) — the entrance comes from the
        keyframe's backwards fill, so if a browser ever drops the animation the
        balls still render instead of vanishing. */
@@ -286,6 +286,7 @@
     font-size:clamp(48px, 9vw, 92px);
     font-weight:700; letter-spacing:-.04em;
     color:#fff;
+    text-shadow:0 4px 16px rgba(0,53,26,.12);   /* slightly stronger lift, a bit more distance */
   }
   footer .ftag{
     margin-top:8px;
@@ -358,6 +359,40 @@
     .tscene__title .tt1{ display:block; white-space:nowrap; }   /* keep "golf, in your" on one line */
     .tscene__title .tt2{ display:block; }                        /* "texts." on line two */
   }
+
+  /* ===== waitlist signup (footer) ===== */
+  .wl{ margin-top:30px; scroll-margin-top:32px; }
+  .wl-title{ margin:0 0 16px; color:#fff; font-weight:700;
+    font-family:'AG Book Rounded', ui-rounded, 'SF Pro Rounded', sans-serif;
+    font-size:clamp(22px,3vw,30px); }
+  .waitlist{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap;
+    max-width:440px; margin:0 auto; }
+  .wl-email{ flex:1 1 230px; min-width:0; height:54px; padding:0 20px;
+    border:0; border-radius:16px; background:#fff; color:var(--ink);
+    font-family:'AG Book Rounded', ui-rounded, 'SF Pro Rounded', sans-serif; font-weight:700;
+    font-size:18px; outline:none; user-select:text; -webkit-user-select:text;
+    box-shadow:0 6px 0 #c2c2c2; }                /* hard cartoon shadow — a slightly-darker-than-white grey */
+  .wl-email::placeholder{ color:#86a695; }
+  .wl-btn{ height:54px; padding:0 26px; border:0; border-radius:16px; cursor:pointer;
+    background:var(--dark-green); color:#fff;
+    font-family:'AG Book Rounded', ui-rounded, 'SF Pro Rounded', sans-serif; font-weight:700; font-size:18px;
+    box-shadow:0 6px 0 #00351a; transition:transform .12s ease, box-shadow .12s ease; }
+  .wl-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 0 #00351a; }
+  .wl-btn:active{ transform:translateY(3px); box-shadow:0 3px 0 #00351a; }
+  .wl-btn[disabled]{ opacity:.65; cursor:default; transform:none; box-shadow:0 6px 0 #00351a; }
+  .wl-hp{ position:absolute !important; left:-9999px; width:1px; height:1px; opacity:0; pointer-events:none; }
+  .wl-btn.is-done{ opacity:1; cursor:default; }   /* success state — stays full-strength, not faded */
+  /* scroll-in scale animation for the heading (same spring feel as "golf, in your texts.") */
+  .js .wl-title{ opacity:0; }
+  .wl-title.in{ animation:wlRise .7s cubic-bezier(.34,1.56,.64,1) both; }
+  @keyframes wlRise{
+    0%{   opacity:0; transform:scale(.85); }
+    100%{ opacity:1; transform:scale(1); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .js .wl-title{ opacity:1; }
+    .wl-title.in{ animation:none; }
+  }
 </style>
 </head>
 <body>
@@ -367,14 +402,14 @@
 
     <!-- decorative colored golf balls that pop in + breathe around the logo -->
     <div aria-hidden="true">
-      <span class="bp" style="left:28%;  top:27%; width:175px; height:175px;"><span class="gball" style="--c:#FF5A5F; --delay:.04s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:6%;   top:12%; width:175px; height:175px;"><span class="gball" style="--c:#FF8E3C; --delay:.30s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:71%;  top:24%; width:175px; height:175px;"><span class="gball" style="--c:#FEE10D; --delay:.16s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:91%;  top:45%; width:175px; height:175px;"><span class="gball" style="--c:#2EC8D8; --delay:.42s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:24%;  top:53%; width:175px; height:175px;"><span class="gball" style="--c:#FF74A0; --delay:.38s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:88%;  top:75%; width:175px; height:175px;"><span class="gball" style="--c:#5B8DEF; --delay:.12s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:15%;  top:83%; width:175px; height:175px;"><span class="gball" style="--c:#B06BFF; --delay:.26s"><img src="golfball.png" alt=""></span></span>
-      <span class="bp" style="left:63%;  top:74%; width:175px; height:175px;"><span class="gball" style="--c:#FFFFFF; --delay:.22s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:28%;  top:27%; width:185px; height:185px;"><span class="gball" style="--c:#FF5A5F; --delay:.04s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:6%;   top:12%; width:185px; height:185px;"><span class="gball" style="--c:#FF8E3C; --delay:.30s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:71%;  top:24%; width:185px; height:185px;"><span class="gball" style="--c:#FEE10D; --delay:.16s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:91%;  top:45%; width:185px; height:185px;"><span class="gball" style="--c:#2EC8D8; --delay:.42s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:24%;  top:53%; width:185px; height:185px;"><span class="gball" style="--c:#FF74A0; --delay:.38s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:91%;  top:75%; width:185px; height:185px;"><span class="gball" style="--c:#5B8DEF; --delay:.12s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:15%;  top:83%; width:185px; height:185px;"><span class="gball" style="--c:#B06BFF; --delay:.26s"><img src="golfball.png" alt=""></span></span>
+      <span class="bp" style="left:66%;  top:78%; width:185px; height:185px;"><span class="gball" style="--c:#FFFFFF; --delay:.22s"><img src="golfball.png" alt=""></span></span>
     </div>
 
     <div class="hero-content">
@@ -387,7 +422,7 @@
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
 
-      <a href="#" class="btn-store" aria-label="Download on the App Store">
+      <a href="#waitlist" class="btn-store" aria-label="Download on the App Store — join the waitlist">
         <svg class="apple" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.77 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.68-1.09 1.77-.95 2.81 1.02.08 2.05-.52 2.68-1.28z"/></svg>
         <span class="lbl"><small>Download on the</small><strong>App Store</strong></span>
       </a>
@@ -427,7 +462,7 @@
         <div class="copy">
           <span class="num">1</span>
           <h3>pick your ball</h3>
-          <p>start a match with a friend right in your chat and choose your golf ball. claim your icon, and it's game on.</p>
+          <p>start a match with a friend in your chat and choose your ball. then, it's time to play.</p>
         </div>
         <div class="art">
           <div class="art-card">
@@ -442,7 +477,7 @@
         <div class="copy">
           <span class="num">2</span>
           <h3>take your shots</h3>
-          <p>pull back, aim, and swing through each colorful hole. dodge the water and sand. fewest strokes wins the match, so make every swing count.</p>
+          <p>pull back, aim, and swing through each hole. dodge water and sand. fewest strokes wins.</p>
         </div>
         <div class="art">
           <div class="art-card">
@@ -457,11 +492,11 @@
         <div class="copy">
           <span class="num">3</span>
           <h3>loser gets a card</h3>
-          <p>the loser picks a pack, and the winner deals them a card. stakes make it fun.</p>
+          <p>the loser chooses a pack, and the winner gets to deal them a card. stakes make it fun.</p>
         </div>
         <div class="art">
           <div class="art-card">
-          <img src="img/kp3.png" loading="lazy" decoding="async" alt="Truth or dare cards — what's a secret you've never shared?">
+          <img src="img/kp4.png" loading="lazy" decoding="async" alt="Question cards — what's a secret you've never shared?">
 
           </div>
         </div>
@@ -473,13 +508,14 @@
   <!-- ===================== FOOTER ===================== -->
   <footer>
     <div class="fmark wordmark">golf</div>
-    <div class="ftag">mini-golf, inside messages.</div>
 
-    <div class="fstore">
-      <a href="#" class="btn-store" aria-label="Download on the App Store">
-        <svg class="apple" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.54c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.41-.14-2.76.83-3.47.83-.72 0-1.82-.81-3-.79-1.54.02-2.96.9-3.75 2.28-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.86 2.3 1.15-.05 1.58-.74 2.97-.74 1.38 0 1.77.74 2.98.72 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.77 5.6c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.68-1.09 1.77-.95 2.81 1.02.08 2.05-.52 2.68-1.28z"/></svg>
-        <span class="lbl"><small>Download on the</small><strong>App Store</strong></span>
-      </a>
+    <div class="wl" id="waitlist">
+      <p class="wl-title">we're live in less than a week.<br>join the waitlist.</p>
+      <form class="waitlist" novalidate>
+        <input class="wl-email" type="email" name="email" placeholder="your email" autocomplete="email" required>
+        <button class="wl-btn" type="submit">join</button>
+        <input class="wl-hp" type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      </form>
     </div>
 
     <div class="legal">© 2026 golf · a product by <a href="https://internetlabs.co" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">Internet</a></div>
@@ -488,7 +524,7 @@
   <script>
     document.documentElement.classList.add('js');
     (function () {
-      var els = document.querySelectorAll('.tscene__title, .step .copy');
+      var els = document.querySelectorAll('.tscene__title, .step .copy, .wl-title');
       if (!('IntersectionObserver' in window) || !els.length) return;
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
@@ -497,6 +533,31 @@
         });
       }, { threshold: [0, 0.35] });
       els.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* waitlist → Google Sheet (Apps Script web app) */
+    (function () {
+      var form = document.querySelector('.waitlist');
+      if (!form) return;
+      var ENDPOINT = 'https://script.google.com/macros/s/AKfycbyFDGXN6ZmnNocyfARW-t4yxhyhVIzQQjzaKvY7BLIhDa5NQcEz5BHcO7lgEswXnpfvkA/exec';
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        var hp = form.elements['_hp'];
+        if (hp && hp.value) return;                       // honeypot — ignore bots
+        var email = (form.elements['email'].value || '').trim();
+        if (!email) return;
+        var btn = form.querySelector('.wl-btn');
+        btn.disabled = true; btn.textContent = 'joining…';
+        fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ email: email }) })
+          .then(function () {
+            btn.textContent = 'joined ✓';
+            btn.classList.add('is-done');
+          })
+          .catch(function () {
+            btn.disabled = false; btn.textContent = 'join';
+            alert("hmm, that didn't go through — try again?");
+          });
+      });
     })();
   </script>
 </body>
