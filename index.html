@@ -150,29 +150,6 @@
     line-height:.9;
     text-shadow:0 2px 12px rgba(0,53,26,.10);   /* very slight, soft lift */
   }
-  /* subtle pre-launch status eyebrow above the wordmark */
-  .status-pill{
-    display:inline-flex; align-items:center; gap:8px;
-    margin-bottom:20px;
-    padding:7px 15px 6px;
-    border-radius:999px;
-    background:rgba(255,255,255,.72);
-    color:#00572B;
-    font-family:'AG Book Rounded', ui-rounded, 'SF Pro Rounded', sans-serif;
-    font-size:15px; font-weight:700; letter-spacing:.01em;
-    box-shadow:0 3px 0 rgba(0,53,26,.12);
-  }
-  .status-pill .dot{
-    width:9px; height:9px; border-radius:50%;
-    background:#F5A623;
-    box-shadow:0 0 0 0 rgba(245,166,35,.6);
-    animation:pulseDot 1.9s ease-in-out infinite;
-  }
-  @keyframes pulseDot{
-    0%,100%{ box-shadow:0 0 0 0 rgba(245,166,35,.6); }
-    55%{ box-shadow:0 0 0 7px rgba(245,166,35,0); }
-  }
-  @media (prefers-reduced-motion:reduce){ .status-pill .dot{ animation:none; } }
   .tagline{
     margin-top:18px;
     font-size:clamp(22px, 3.6vw, 32px);
@@ -453,7 +430,6 @@
     </div>
 
     <div class="hero-content">
-    <span class="status-pill"><span class="dot"></span>coming soon</span>
     <h1 class="title wordmark">golf</h1>
     <p class="tagline">mini golf, inside messages.</p>
 
