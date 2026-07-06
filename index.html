@@ -101,6 +101,8 @@
   @media (max-width:1024px){
     .hero-stage{ min-height:112svh; }
     .hero-content{ padding:22svh 28px 10svh; }
+    /* on phones keep the scroll hint in normal flow (below the buttons) */
+    .scroll-hint{ position:static; transform:none; margin-top:44px; }
   }
 
   .bp{ position:absolute; z-index:1;
@@ -197,12 +199,16 @@
   .btn-store .lbl strong{ font-size:22px; font-weight:600; letter-spacing:-.01em; }
 
   .scroll-hint{
-    margin-top:54px;
+    /* pinned to the bottom so it's OUT of the vertical-centering stack —
+       lets title + tagline + buttons optically center on the splash */
+    position:absolute; left:50%; bottom:34px; transform:translateX(-50%);
     color:var(--dark-green);
     opacity:.7;
     font-size:14px; font-weight:500;
     display:flex; flex-direction:column; align-items:center; gap:8px;
+    transition:opacity .35s ease;
   }
+  .scroll-hint.hide{ opacity:0; pointer-events:none; }   /* fades out once the page is scrolled */
   .scroll-hint .arrow{ animation:bob 1.8s ease-in-out infinite; }
   @keyframes bob{ 0%,100%{ transform:translateY(0); } 50%{ transform:translateY(6px); } }
 
@@ -550,6 +556,17 @@
         });
       }, { threshold: [0, 0.35] });
       els.forEach(function (el) { io.observe(el); });
+    })();
+
+    /* fade the scroll hint out once the page is actually scrolled (back at top → returns) */
+    (function () {
+      var hint = document.querySelector('.scroll-hint');
+      if (!hint) return;
+      var onScroll = function () {
+        hint.classList.toggle('hide', window.scrollY > 24);
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
     })();
 
     /* waitlist → Google Sheet (Apps Script web app) */
